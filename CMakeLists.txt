@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(d1_waypoints_manager)
+project(d1_waypoint_publisher)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -30,15 +30,15 @@ include_directories(
 
 #add_executable(nav2_send_goal src/nav2_send_goal.cpp)
 
-ament_auto_add_executable(d1_waypoints_manager src/d1_waypoints_manager.cpp src/d1_waypoints_manager_node.cpp)
-ament_target_dependencies(d1_waypoints_manager rclcpp rclcpp_action nav2_msgs nav_msgs tf2 tf2_geometry_msgs tsukutsuku2_msgs)
+ament_auto_add_executable(d1_waypoint_publisher src/d1_waypoint_publisher.cpp src/d1_waypoint_publisher_node.cpp)
+ament_target_dependencies(d1_waypoint_publisher rclcpp rclcpp_action nav2_msgs nav_msgs tf2 tf2_geometry_msgs tsukutsuku2_msgs)
 
 #ament_auto_add_executable(find_point_publisher src/find_point_publisher.cpp)
 #ament_target_dependencies(find_point_publisher rclcpp std_msgs)
 
 
 install(TARGETS
-  d1_waypoints_manager
+  d1_waypoint_publisher
   #find_point_publisher
   #state_and_feedback_publisher
   DESTINATION lib/${PROJECT_NAME}/

@@ -1,4 +1,4 @@
-#include "d1_waypoints_manager/d1_waypoints_manager.hpp"  // include local header
+#include "d1_waypoint_publisher/d1_waypoint_publisher.hpp"  // include local header
 
 int main(int argc, char** argv){
 

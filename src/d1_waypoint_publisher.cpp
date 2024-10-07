@@ -1,4 +1,4 @@
-#include "d1_waypoints_manager/d1_waypoints_manager.hpp"  // ローカルヘッダーをインクルード
+#include "d1_waypoint_publisher/d1_waypoint_publisher.hpp"  // ローカルヘッダーをインクルード
 
 int D1WaypointPublisher::state_ = NO_SEND;
 
@@ -36,12 +36,12 @@ D1WaypointPublisher::D1WaypointPublisher() : rclcpp::Node("d1_waypoint_manager")
     d1_waypoints_publisher_ = this->create_publisher<tsukutsuku2_msgs::msg::Waypoints>("d1_waypoints_topic", 10);
 
     // ウェイポイントのCSVファイルのパスを設定
-    waypoints_file_1_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/csv/waypoints_1.csv";
-    waypoints_file_2_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/csv/waypoints_2.csv";
-    waypoints_file_3_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/csv/waypoints_3.csv";
-    waypoints_file_4_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/csv/waypoints_a.csv";
-    waypoints_file_5_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/csv/waypoints_b.csv";
-    waypoints_file_6_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/csv/waypoints_c.csv";
+    waypoints_file_1_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoint_publisher/csv/waypoints_1.csv";
+    waypoints_file_2_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoint_publisher/csv/waypoints_2.csv";
+    waypoints_file_3_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoint_publisher/csv/waypoints_3.csv";
+    waypoints_file_4_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoint_publisher/csv/waypoints_a.csv";
+    waypoints_file_5_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoint_publisher/csv/waypoints_b.csv";
+    waypoints_file_6_ = "/home/yamaguchi-a/ros2_ws/src/d1_waypoint_publisher/csv/waypoints_c.csv";
 
     // CSVファイルのリストを初期化
     csv_file_ = {waypoints_file_1_, waypoints_file_2_, waypoints_file_3_, waypoints_file_4_, waypoints_file_5_, waypoints_file_6_};

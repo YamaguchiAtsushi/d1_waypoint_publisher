@@ -1,0 +1,36 @@
+[0.009s] Invoking command in '/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager -DCMAKE_INSTALL_PREFIX=/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/install/d1_waypoints_manager
+[0.021s] -- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)
+[0.173s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.175s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.182s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.191s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.205s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.239s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.241s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.341s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.395s] -- Found rclcpp_action: 16.0.10 (/opt/ros/humble/share/rclcpp_action/cmake)
+[0.439s] -- Found nav2_msgs: 1.1.15 (/opt/ros/humble/share/nav2_msgs/cmake)
+[0.497s] -- Found tf2: 0.25.7 (/opt/ros/humble/share/tf2/cmake)
+[0.501s] -- Found tf2_geometry_msgs: 0.25.7 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[0.503s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[0.505s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[0.568s] [31mCMake Error at CMakeLists.txt:20 (find_package):
+[0.568s]   By not providing "Findtsukutsuku2_msgs.cmake" in CMAKE_MODULE_PATH this
+[0.568s]   project has asked CMake to find a package configuration file provided by
+[0.568s]   "tsukutsuku2_msgs", but CMake did not find one.
+[0.568s] 
+[0.568s]   Could not find a package configuration file provided by "tsukutsuku2_msgs"
+[0.568s]   with any of the following names:
+[0.568s] 
+[0.568s]     tsukutsuku2_msgsConfig.cmake
+[0.568s]     tsukutsuku2_msgs-config.cmake
+[0.568s] 
+[0.568s]   Add the installation prefix of "tsukutsuku2_msgs" to CMAKE_PREFIX_PATH or
+[0.568s]   set "tsukutsuku2_msgs_DIR" to a directory containing one of the above
+[0.568s]   files.  If "tsukutsuku2_msgs" provides a separate development package or
+[0.568s]   SDK, be sure it has been installed.
+[0.569s] 
+[0.569s] [0m
+[0.569s] -- Configuring incomplete, errors occurred!
+[0.569s] See also "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager/CMakeFiles/CMakeOutput.log".
+[0.577s] Invoked command in '/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager -DCMAKE_INSTALL_PREFIX=/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/install/d1_waypoints_manager

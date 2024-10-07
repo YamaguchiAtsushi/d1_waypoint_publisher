@@ -1,0 +1,76 @@
+[0.000000] (-) TimerEvent: {}
+[0.000145] (d1_waypoints_manager) JobQueued: {'identifier': 'd1_waypoints_manager', 'dependencies': OrderedDict()}
+[0.000284] (d1_waypoints_manager) JobStarted: {'identifier': 'd1_waypoints_manager'}
+[0.008297] (d1_waypoints_manager) JobProgress: {'identifier': 'd1_waypoints_manager', 'progress': 'cmake'}
+[0.008808] (d1_waypoints_manager) Command: {'cmd': ['/usr/bin/cmake', '/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager', '-DCMAKE_INSTALL_PREFIX=/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/install/d1_waypoints_manager'], 'cwd': '/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'yamaguchi-a'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/usr/share/gazebo/../../lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('HOME', '/home/yamaguchi-a'), ('OLDPWD', '/home/yamaguchi-a/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu-xorg'), ('GAZEBO_MASTER_URI', 'http://localhost:11345'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1380'), ('SYSTEMD_EXEC_PID', '1897'), ('UNZIP', '-O CP932'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator21a9d5db22c73a993ff0b42f64b396873'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '48368'), ('COLCON_PREFIX_PATH', '/home/yamaguchi-a/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'yamaguchi-a'), ('JOURNAL_STREAM', '8:32400'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'yamaguchi-a'), ('TERM', 'xterm-256color'), ('GAZEBO_MODEL_PATH', '/usr/share/gazebo/../../share/gazebo-11/models:'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('OGRE_RESOURCE_PATH', '/usr/lib/x86_64-linux-gnu/OGRE-1.9.0'), ('PATH', '/opt/ros/humble/bin:/home/yamaguchi-a/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/yamaguchia-ThinkPad-X1-Carbon-7th:@/tmp/.ICE-unix/1628,unix/yamaguchia-ThinkPad-X1-Carbon-7th:/tmp/.ICE-unix/1628'), ('INVOCATION_ID', 'cd1dde4634294454bea81e0a266f3394'), ('XDG_MENU_PREFIX', 'gnome-'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'ja_JP.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu-xorg'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '30'), ('AMENT_PREFIX_PATH', '/home/yamaguchi-a/ros2_ws/install/d1_waypoints_manager:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:9549b0ca-8767-488b-b067-76d0d387b29c'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu-xorg'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GAZEBO_RESOURCE_PATH', '/usr/share/gazebo/../../share/gazebo-11:'), ('GAZEBO_MODEL_DATABASE_URI', 'http://models.gazebosim.org'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager'), ('TURTLEBOT3_MODEL', 'burger'), ('ZIPINFO', '-O CP932'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu-xorg:/etc/xdg'), ('GAZEBO_PLUGIN_PATH', '/usr/share/gazebo/../../lib/x86_64-linux-gnu/gazebo-11/plugins:'), ('XDG_DATA_DIRS', '/usr/share/ubuntu-xorg:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/yamaguchi-a/ros2_ws/install/d1_waypoints_manager:/opt/ros/humble')]), 'shell': False}
+[0.065436] (d1_waypoints_manager) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.099207] (-) TimerEvent: {}
+[0.121582] (d1_waypoints_manager) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.128750] (d1_waypoints_manager) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.198373] (d1_waypoints_manager) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.199269] (-) TimerEvent: {}
+[0.207159] (d1_waypoints_manager) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.207404] (d1_waypoints_manager) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.207793] (d1_waypoints_manager) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.211033] (d1_waypoints_manager) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.295096] (d1_waypoints_manager) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.299412] (-) TimerEvent: {}
+[0.303436] (d1_waypoints_manager) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.303779] (d1_waypoints_manager) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.304549] (d1_waypoints_manager) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.306788] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.399513] (-) TimerEvent: {}
+[0.470733] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.499610] (-) TimerEvent: {}
+[0.599919] (-) TimerEvent: {}
+[0.610672] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.615903] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.624871] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.638185] (d1_waypoints_manager) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.655584] (d1_waypoints_manager) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.700054] (-) TimerEvent: {}
+[0.702861] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.705838] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.796864] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[0.800152] (-) TimerEvent: {}
+[0.825626] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[0.868616] (d1_waypoints_manager) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.877706] (d1_waypoints_manager) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[0.900297] (-) TimerEvent: {}
+[0.950957] (d1_waypoints_manager) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[0.951356] (d1_waypoints_manager) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.000427] (-) TimerEvent: {}
+[1.026318] (d1_waypoints_manager) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[1.027687] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.086968] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found rclcpp_action: 16.0.10 (/opt/ros/humble/share/rclcpp_action/cmake)\n'}
+[1.100568] (-) TimerEvent: {}
+[1.126916] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found nav2_msgs: 1.1.15 (/opt/ros/humble/share/nav2_msgs/cmake)\n'}
+[1.192225] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found tf2: 0.25.7 (/opt/ros/humble/share/tf2/cmake)\n'}
+[1.200703] (-) TimerEvent: {}
+[1.202878] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found tf2_geometry_msgs: 0.25.7 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)\n'}
+[1.216575] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)\n'}
+[1.217843] (d1_waypoints_manager) StdoutLine: {'line': b'-- Found Eigen3: TRUE (found version "3.4.0") \n'}
+[1.218054] (d1_waypoints_manager) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[1.292616] (d1_waypoints_manager) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:20 (find_package):\n'}
+[1.293147] (d1_waypoints_manager) StderrLine: {'line': b'  By not providing "Findtsukutsuku2_msgs.cmake" in CMAKE_MODULE_PATH this\n'}
+[1.293221] (d1_waypoints_manager) StderrLine: {'line': b'  project has asked CMake to find a package configuration file provided by\n'}
+[1.293282] (d1_waypoints_manager) StderrLine: {'line': b'  "tsukutsuku2_msgs", but CMake did not find one.\n'}
+[1.293370] (d1_waypoints_manager) StderrLine: {'line': b'\n'}
+[1.293431] (d1_waypoints_manager) StderrLine: {'line': b'  Could not find a package configuration file provided by "tsukutsuku2_msgs"\n'}
+[1.293489] (d1_waypoints_manager) StderrLine: {'line': b'  with any of the following names:\n'}
+[1.293545] (d1_waypoints_manager) StderrLine: {'line': b'\n'}
+[1.293601] (d1_waypoints_manager) StderrLine: {'line': b'    tsukutsuku2_msgsConfig.cmake\n'}
+[1.293656] (d1_waypoints_manager) StderrLine: {'line': b'    tsukutsuku2_msgs-config.cmake\n'}
+[1.293711] (d1_waypoints_manager) StderrLine: {'line': b'\n'}
+[1.293766] (d1_waypoints_manager) StderrLine: {'line': b'  Add the installation prefix of "tsukutsuku2_msgs" to CMAKE_PREFIX_PATH or\n'}
+[1.293821] (d1_waypoints_manager) StderrLine: {'line': b'  set "tsukutsuku2_msgs_DIR" to a directory containing one of the above\n'}
+[1.293876] (d1_waypoints_manager) StderrLine: {'line': b'  files.  If "tsukutsuku2_msgs" provides a separate development package or\n'}
+[1.293932] (d1_waypoints_manager) StderrLine: {'line': b'  SDK, be sure it has been installed.\n'}
+[1.293987] (d1_waypoints_manager) StderrLine: {'line': b'\n'}
+[1.294041] (d1_waypoints_manager) StderrLine: {'line': b'\x1b[0m\n'}
+[1.294096] (d1_waypoints_manager) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[1.294159] (d1_waypoints_manager) StdoutLine: {'line': b'See also "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager/CMakeFiles/CMakeOutput.log".\n'}
+[1.300838] (-) TimerEvent: {}
+[1.303614] (d1_waypoints_manager) CommandEnded: {'returncode': 1}
+[1.324321] (d1_waypoints_manager) JobEnded: {'identifier': 'd1_waypoints_manager', 'rc': 1}
+[1.334964] (-) EventReactorShutdown: {}

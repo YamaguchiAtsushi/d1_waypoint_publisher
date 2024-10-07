@@ -1,0 +1,57 @@
+[0.011s] Invoking command in '/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager -DCMAKE_INSTALL_PREFIX=/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/install/d1_waypoints_manager
+[0.065s] -- The C compiler identification is GNU 11.4.0
+[0.121s] -- The CXX compiler identification is GNU 11.4.0
+[0.129s] -- Detecting C compiler ABI info
+[0.198s] -- Detecting C compiler ABI info - done
+[0.207s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.207s] -- Detecting C compile features
+[0.208s] -- Detecting C compile features - done
+[0.211s] -- Detecting CXX compiler ABI info
+[0.295s] -- Detecting CXX compiler ABI info - done
+[0.303s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.304s] -- Detecting CXX compile features
+[0.304s] -- Detecting CXX compile features - done
+[0.307s] -- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)
+[0.471s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.611s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.616s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.625s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.638s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.655s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.703s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.706s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.797s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.825s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.868s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.878s] -- Looking for pthread.h
+[0.951s] -- Looking for pthread.h - found
+[0.951s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.026s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[1.028s] -- Found Threads: TRUE  
+[1.087s] -- Found rclcpp_action: 16.0.10 (/opt/ros/humble/share/rclcpp_action/cmake)
+[1.127s] -- Found nav2_msgs: 1.1.15 (/opt/ros/humble/share/nav2_msgs/cmake)
+[1.192s] -- Found tf2: 0.25.7 (/opt/ros/humble/share/tf2/cmake)
+[1.203s] -- Found tf2_geometry_msgs: 0.25.7 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[1.216s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[1.218s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[1.218s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[1.293s] [31mCMake Error at CMakeLists.txt:20 (find_package):
+[1.293s]   By not providing "Findtsukutsuku2_msgs.cmake" in CMAKE_MODULE_PATH this
+[1.293s]   project has asked CMake to find a package configuration file provided by
+[1.293s]   "tsukutsuku2_msgs", but CMake did not find one.
+[1.293s] 
+[1.293s]   Could not find a package configuration file provided by "tsukutsuku2_msgs"
+[1.293s]   with any of the following names:
+[1.293s] 
+[1.293s]     tsukutsuku2_msgsConfig.cmake
+[1.293s]     tsukutsuku2_msgs-config.cmake
+[1.293s] 
+[1.294s]   Add the installation prefix of "tsukutsuku2_msgs" to CMAKE_PREFIX_PATH or
+[1.294s]   set "tsukutsuku2_msgs_DIR" to a directory containing one of the above
+[1.294s]   files.  If "tsukutsuku2_msgs" provides a separate development package or
+[1.294s]   SDK, be sure it has been installed.
+[1.294s] 
+[1.294s] [0m
+[1.294s] -- Configuring incomplete, errors occurred!
+[1.294s] See also "/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager/CMakeFiles/CMakeOutput.log".
+[1.304s] Invoked command in '/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/build/d1_waypoints_manager' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake /home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager -DCMAKE_INSTALL_PREFIX=/home/yamaguchi-a/ros2_ws/src/d1_waypoints_manager/install/d1_waypoints_manager

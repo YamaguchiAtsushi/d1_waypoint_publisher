@@ -1,6 +1,9 @@
 #include "d1_waypoint_publisher/d1_waypoint_publisher.hpp"  // ローカルヘッダーをインクルード
 
-int D1WaypointPublisher::state_ = NO_SEND;
+//int D1WaypointPublisher::state_ = NO_SEND;
+int D1WaypointPublisher::state_ = APPROACH_WHITE_LINE;
+//int D1WaypointPublisher::state_ = APPROACH_AREA; //ボックス認識せずにエリアに移動できるかだけを確認したいとき
+
 
 D1WaypointPublisher::D1WaypointPublisher() : rclcpp::Node("d1_waypoint_manager"), id_(0), elapsed_time_(0)
 {
@@ -9,29 +12,15 @@ D1WaypointPublisher::D1WaypointPublisher() : rclcpp::Node("d1_waypoint_manager")
     rclcpp::QoS latched_qos{1};
     latched_qos.transient_local();  // 遅延QoSの設定
 
-    // Area のサブスクライバーを初期化
+    // Area のサブスクライバーを初期化//int D1WaypointPublisher::state_ = APPROACH_WHITE_LINE;
+
     state_and_feedback_sub_ = this->create_subscription<tsukutsuku2_msgs::msg::StateAndFeedback>(
         "state_and_feedback_topic", 10, 
         std::bind(&D1WaypointPublisher::StateAndFeedbackCallback, this, std::placeholders::_1)
     );
 
-    area_sub_ = create_subscription<tsukutsuku2_msgs::msg::D1>(
-        "area", 10, std::bind(&D1WaypointPublisher::AreaCallback, this, std::placeholders::_1));
-
-    find_box_sub_ = this->create_subscription<tsukutsuku2_msgs::msg::D1>(
-        "find_box", 10,
-        std::bind(&D1WaypointPublisher::FindBoxCallback, this, std::placeholders::_1)
-    );
-
-    find_character_sub_ = this->create_subscription<tsukutsuku2_msgs::msg::D1>(
-        "box_character", 10,
-        std::bind(&D1WaypointPublisher::FindCharacterCallback, this, std::placeholders::_1)
-    );
-
-    box_pose_sub_ = this->create_subscription<tsukutsuku2_msgs::msg::D1>(
-        "box_pose", 10,
-        std::bind(&D1WaypointPublisher::BoxPoseCallback, this, std::placeholders::_1)
-    );
+    d1_msg_sub_ = this->create_subscription<tsukutsuku2_msgs::msg::D1>(
+        "d1_messages", 10, std::bind(&D1WaypointPublisher::D1MsgCallback, this, std::placeholders::_1));
 
     d1_waypoints_publisher_ = this->create_publisher<tsukutsuku2_msgs::msg::Waypoints>("d1_waypoints_topic", 10);
 
@@ -46,6 +35,8 @@ D1WaypointPublisher::D1WaypointPublisher() : rclcpp::Node("d1_waypoint_manager")
     // CSVファイルのリストを初期化
     csv_file_ = {waypoints_file_1_, waypoints_file_2_, waypoints_file_3_, waypoints_file_4_, waypoints_file_5_, waypoints_file_6_};
 
+
+    approach_white_line_flag = 0;
     approach_green_box_flag = 0;
     approach_blue_box_flag = 0;
     approach_goal_flag = 0;
@@ -65,7 +56,7 @@ D1WaypointPublisher::D1WaypointPublisher() : rclcpp::Node("d1_waypoint_manager")
         //RCLCPP_INFO(this->get_logger(), "Elapsed time: %d ms", elapsed_time_);
 
         // 5秒経過したらシャットダウン
-        if (elapsed_time_ >= 5000) {
+        if (elapsed_time_ >= 50000) {
             //RCLCPP_INFO(this->get_logger(), "Shutting down after 5 seconds.");
             state_ = APPROACH_GOAL;
             //rclcpp::shutdown();
@@ -74,7 +65,7 @@ D1WaypointPublisher::D1WaypointPublisher() : rclcpp::Node("d1_waypoint_manager")
     });
     // 最初のウェイポイントをCSVファイルから読み込み
     ReadWaypointsFromCSV(csv_file_[0], waypoints_);
-    std::cout << "waypoints_.size():" << waypoints_.size()<< std::endl;
+    // std::cout << "waypoints_.size():" << waypoints_.size()<< std::endl;
 
     start_index_ = 1;  // 開始インデックスを設定
 }
@@ -98,24 +89,6 @@ std::vector<std::string> D1WaypointPublisher::getCSVLine(std::string& input, cha
     }
     return result;
 }
-
-/*
-// CSVファイルからウェイポイントを読み込む
-void D1WaypointPublisher::ReadWaypointsFromCSV(std::string& csv_file, std::vector<tsukutsuku2_msgs::msg::Waypoint>& waypoints_) {
-    std::ifstream ifs(csv_file);
-    std::string line;
-    while (getline(ifs, line)) {
-        id_++;
-        std::vector<std::string> strvec = getCSVLine(line, ',');
-        tsukutsuku2_msgs::msg::Waypoint waypoint;
-        waypoint.pose.position.x = std::stod(strvec.at(0));
-        waypoint.pose.position.y = std::stod(strvec.at(1));
-        waypoint.pose.position.z = 0.0;
-        waypoint.pose.orientation = rpyYawToQuat(std::stod(strvec.at(2)) / 180.0 * M_PI);
-        waypoints_.push_back(waypoint);
-    }
-}
-*/
 
 // CSVファイルからウェイポイントを読み込む
 void D1WaypointPublisher::ReadWaypointsFromCSV(std::string& csv_file, std::vector<tsukutsuku2_msgs::msg::Waypoint>& waypoints_) {
@@ -151,7 +124,7 @@ void D1WaypointPublisher::SendWaypointsTimerCallback() {
     static size_t sending_index = start_index_ - 1;
     //static int state_ = NO_SEND;
     //std::cout << "1" << std::endl;
-    std::cout << "waypoints_.size():" << waypoints_.size()<< std::endl;
+    // std::cout << "waypoints_.size():" << waypoints_.size()<< std::endl;
 
 
 
@@ -162,30 +135,40 @@ void D1WaypointPublisher::SendWaypointsTimerCallback() {
 
         case APPROACH_WHITE_LINE://approach white line
 
-            std::cout << "APPROACH_WHITE_LINE" << std::endl;
+            // std::cout << "APPROACH_WHITE_LINE" << std::endl;
 
-            if(sending_index < waypoints_.size()){
+            if(sending_index < waypoints_.size() && approach_white_line_flag == 0){
+                std::cout << "APPROACH_WHITE_LINE : sending waypoint" << std::endl;
                 sending_index =  SendWaypointsOnce(sending_index);
+                approach_white_line_flag = 1;
                 std::cout << "3" << std::endl;
 
             }
             if(now_feedback_ == STANBY){
+                std::cout << "now_feedback:" << now_feedback_<< std::endl;
                 state_ = APPROACH_GREEN_BOX;
         }
             break;
 
         case APPROACH_GREEN_BOX://approach box
-            std::cout << "APPROACH_GREEN_BOX" << std::endl;
+            // std::cout << "APPROACH_GREEN_BOX" << std::endl;
             if (approach_green_box_flag == 0) {
                 ReadWaypointsFromCSV(csv_file_[1], waypoints_);
+                //approach_green_box_flag = 1;
+            }
+            if (sending_index < waypoints_.size() && approach_green_box_flag == 0) {
+                std::cout << "APPROACH_GREEN_BOX : sending waypoint" << std::endl;
+
+                sending_index = SendWaypointsOnce(sending_index);
                 approach_green_box_flag = 1;
             }
-            if (sending_index < waypoints_.size()) {
-                sending_index = SendWaypointsOnce(sending_index);
-            }
+            // std::cout << "find_box" << find_box <<std::endl;
+
+
+            
             if (now_feedback_ == STANBY) {
                 if(find_box == true){
-                    find_box = false;
+                    //find_box = false;
                     std::cout << "STANBY 状態に入りました。3秒停止します。" << std::endl;
                     std::this_thread::sleep_for(std::chrono::seconds(3));
                     // 3秒経ったら状態を APPROACH_BOX に変更
@@ -195,20 +178,22 @@ void D1WaypointPublisher::SendWaypointsTimerCallback() {
             break;
 
         case APPROACH_AREA:
-            std::cout << "APPROACH_AREA" << std::endl;
+            // std::cout << "APPROACH_AREA" << std::endl;
 
             if (approach_area_flag == 0) {
-                if (box_character == "a") {
+                if (character == "a") {
                     ReadWaypointsFromCSV(csv_file_[3], waypoints_);
-                } else if (box_character == "b") {
+                } else if (character == "b") {
                     ReadWaypointsFromCSV(csv_file_[4], waypoints_);
-                } else if (box_character == "c") {
+                } else if (character == "c") {
                     ReadWaypointsFromCSV(csv_file_[5], waypoints_);
                 }
-                approach_area_flag = 1;
+                //approach_area_flag = 1;
             }
-            if (sending_index < waypoints_.size()) {
+            if (sending_index < waypoints_.size() && approach_area_flag == 0) {
+                std::cout << "APPROACH_AREA : sending waypoint" << std::endl;
                 sending_index = SendWaypointsOnce(sending_index);
+                approach_area_flag = 1;
             }
             if(find_box == true){
                 find_box = false;
@@ -217,17 +202,21 @@ void D1WaypointPublisher::SendWaypointsTimerCallback() {
             break;
 
         case APPROACH_BLUE_BOX:
+            // std::cout << "APPROACH_BLUE_BOX" << std::endl;
+
             if (approach_blue_box_flag == 0) {
                 ReadWaypointsFromCSV(csv_file_[1], waypoints_);
-                approach_blue_box_flag = 1;
+                //approach_blue_box_flag = 1;
             }
-            if (sending_index < waypoints_.size()) {
+            if (sending_index < waypoints_.size() && approach_blue_box_flag == 0) {
+                std::cout << "APPROACH_BLUE_BOX : sending waypoint" << std::endl;
                 sending_index = SendWaypointsOnce(sending_index);
+                approach_blue_box_flag = 1;
             }
             if (now_feedback_ == STANBY) {
                 if(find_box == true){
                     std::cout << "STANBY 状態に入りました。3秒停止します。" << std::endl;
-                    std::this_thread::sleep_for(std::chrono::seconds(3));
+                    std::this_thread::sleep_for(std::chrono::seconds(3)); //いらんかも
                     // 3秒経ったら状態を APPROACH_BOX に変更
                     state_ = APPROACH_GOAL;
                     std::cout << "3秒経過しました。BOX_CHECK 状態に遷移します。" << std::endl;
@@ -235,12 +224,17 @@ void D1WaypointPublisher::SendWaypointsTimerCallback() {
             break;
 
         case APPROACH_GOAL:
+            // std::cout << "APPROACH_GOAL" << std::endl;
+
             if (approach_goal_flag == 0) {
                 ReadWaypointsFromCSV(csv_file_[1], waypoints_);
-                approach_goal_flag = 1;
+                // approach_goal_flag = 1;
             }
-            if (sending_index < waypoints_.size()) {
+            if (sending_index < waypoints_.size() && approach_goal_flag == 0) {
+                std::cout << "APPROACH_GOAL : sending waypoint" << std::endl;
                 sending_index = SendWaypointsOnce(sending_index);
+                approach_goal_flag = 1;
+
             }
             break;
 
@@ -260,7 +254,7 @@ size_t D1WaypointPublisher::SendWaypointsOnce(size_t sending_index) {
     //std::cout << "waypoints_.size():" << waypoints_.size()<< std::endl;
 
     if (sending_index < waypoints_.size()) {
-        std::cout << "sendwaypointsonce2" << std::endl;
+        // std::cout << "sendwaypointsonce2" << std::endl;
 
         tsukutsuku2_msgs::msg::Waypoints waypoints_msg;
         waypoints_msg.waypoints = {waypoints_[sending_index]};
@@ -272,36 +266,27 @@ size_t D1WaypointPublisher::SendWaypointsOnce(size_t sending_index) {
 
 void D1WaypointPublisher::StateAndFeedbackCallback(const tsukutsuku2_msgs::msg::StateAndFeedback::SharedPtr msg) {
     //RCLCPP_INFO(this->get_logger(), "Received state: %d, feedback: %s", msg->state, msg->feed_back.c_str());
-    RCLCPP_INFO(this->get_logger(), "State: %d, feedback: %d", msg->state, msg->feed_back);
+    // RCLCPP_INFO(this->get_logger(), "State: %d, feedback: %d", msg->state, msg->feed_back);
     next_state_ = msg->state;
     now_feedback_ = msg->feed_back;
-    if(next_state_ == 1){
-        state_ = APPROACH_WHITE_LINE;
-    }
+    // if(next_state_ == 1){
+    //     state_ = APPROACH_WHITE_LINE;
+    // }
 }
 
 
 
-void D1WaypointPublisher::AreaCallback(const tsukutsuku2_msgs::msg::D1::SharedPtr msg) {
-    box_character = msg->character;
-    RCLCPP_INFO(this->get_logger(), "Received area: %s", msg->character.c_str());
-    // areaに関連する処理をここに追加
-}
+void D1WaypointPublisher::D1MsgCallback(const tsukutsuku2_msgs::msg::D1::SharedPtr msg)
+{
+    character = msg->character.c_str(),
+    find_box = msg->find_box ? "true" : "false",
+    find_character = msg->find_character ? "true" : "false",
+    pose.position.x = msg->pose.position.x,
+    pose.position.y = msg->pose.position.y,
+    pose.position.z = msg->pose.position.z;
+    // ログに出力
+    // RCLCPP_INFO(this->get_logger(), 
+    //             "Received D1 message: character=%s, find_box=%s, find_character=%s, position=(%f, %f, %f)",
+    //             character, find_box, find_character, pose.position.x, pose.position.y = msg->pose.position.y, pose.position.z);
 
-void D1WaypointPublisher::FindBoxCallback(const tsukutsuku2_msgs::msg::D1::SharedPtr msg) {
-    find_box = msg->find_box;  // D1メッセージのboolフィールドにアクセス
-    RCLCPP_INFO(this->get_logger(), "Find box: %s", find_box ? "true" : "false");
-    // find_boxに関連する処理をここに追加
-}
-
-
-void D1WaypointPublisher::FindCharacterCallback(const tsukutsuku2_msgs::msg::D1::SharedPtr msg) {
-    find_character = msg->find_character;  // D1メッセージのboolフィールドにアクセス
-    RCLCPP_INFO(this->get_logger(), "character box: %s", find_character ? "true" : "false");
-    // find_characterに関連する処理をここに追加
-}
-
-void D1WaypointPublisher::BoxPoseCallback(const tsukutsuku2_msgs::msg::D1::SharedPtr msg) {
-    RCLCPP_INFO(this->get_logger(), "Box pose: [%f, %f, %f]", msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
-    // box_poseに関連する処理をここに追加
 }

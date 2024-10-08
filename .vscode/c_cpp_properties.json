@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/yamaguchi-a/ros2_ws/install/tsukutsuku2_msgs/include/**",
+        "/home/yamaguchi-a/ros2_ws/install/ypspur_ros2_bridge/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/yamaguchi-a/ros2_ws/src/d1_waypoint_publisher/include/**",
+        "/home/yamaguchi-a/ros2_ws/src/pcd2dpimg/include/**",
+        "/home/yamaguchi-a/ros2_ws/src/tsukutsuku2_pcd_utils/include/**",
+        "/home/yamaguchi-a/ros2_ws/src/ypspur_ros2_bridge/ypspur_ros2_bridge/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

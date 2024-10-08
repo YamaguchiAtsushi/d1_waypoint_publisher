@@ -71,6 +71,7 @@ private:
   void FindCharacterCallback(const tsukutsuku2_msgs::msg::D1::SharedPtr msg);
   void BoxPoseCallback(const tsukutsuku2_msgs::msg::D1::SharedPtr msg); 
   void SendWaypointsTimerCallback();
+  void D1MsgCallback(const tsukutsuku2_msgs::msg::D1::SharedPtr msg);
   size_t SendWaypointsOnce(size_t sending_index);
 
 private:
@@ -85,6 +86,7 @@ private:
   rclcpp::Subscription<tsukutsuku2_msgs::msg::D1>::SharedPtr find_character_sub_;
   rclcpp::Subscription<tsukutsuku2_msgs::msg::D1>::SharedPtr box_pose_sub_;
   rclcpp::Subscription<tsukutsuku2_msgs::msg::StateAndFeedback>::SharedPtr state_and_feedback_sub_;
+  rclcpp::Subscription<tsukutsuku2_msgs::msg::D1>::SharedPtr d1_msg_sub_;
 
   geometry_msgs::msg::Pose current_pose_;
   std_msgs::msg::String area_character_;
@@ -106,11 +108,11 @@ private:
   tsukutsuku2_msgs::msg::Waypoint waypoint;
   tsukutsuku2_msgs::msg::Waypoints waypoints_msg;
   tsukutsuku2_msgs::msg::StateAndFeedback state_and_feedback_msg;
-
   tsukutsuku2_msgs::msg::D1 d1_msg;
   
 
   std::vector<tsukutsuku2_msgs::msg::Waypoint> waypoints_; 
+
   //auto waypoints_msg = tsukutsuku2_msgs::msg::Waypoints();
   
   size_t start_index_;
@@ -133,12 +135,15 @@ private:
   bool is_goal_accepted_;
 
   uint8_t next_state_;
-  uint8_t now_feedback_;
+  uint8_t now_feedback_ = 8;
 
-  std::string box_character;
+  geometry_msgs::msg::Pose pose;
   bool find_box;
   bool find_character;
+  std::string character;
 
+
+  int approach_white_line_flag;
   int approach_green_box_flag;
   int approach_blue_box_flag;
   int approach_goal_flag;

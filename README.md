@@ -1,0 +1,12 @@
+# d1_waypoint_publisher
+## 概要
+* D1課題の経路計画をする<br>
+* tsukutsuku_msgを使用<br>
+* 各エリアへ移動するためのwaypointを出力する<br>
+* 一定時間経過すると最終目的地(APPROACH_GOAL)に向かう<br>
+## 各state
+  * APPROACH_WHITE_LINE<br>
+  * APPROACH_GREEN_BOX<br>
+  * APPROACH_AREA<br>
+  * APPROACH_BLUE_BOX<br>
+  * APPROACH_GOAL<br>
